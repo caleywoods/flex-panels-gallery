@@ -94,6 +94,7 @@
     }
 
     .panel.open {
+      flex: 5;
       font-size:40px;
     }
 
@@ -143,12 +144,8 @@
       ['open','open-active'].forEach((klass) => this.classList.toggle(klass));
     }
 
-    /* Long form here rather than arrow function so that we keep our 'this'
-     * binding
-     */
-    panels.forEach(function(panel) {
-      panel.addEventListener('click',toggleClasses);
-    });
+    /* apparently we can get away with arrow function here 🤷 */
+    panels.forEach((panel) => panel.addEventListener('click', toggleClasses));
   </script>
 
 </body>
