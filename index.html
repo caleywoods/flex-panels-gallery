@@ -146,6 +146,10 @@
 
     // trans(istion) end
     function transcend(e) {
+      /* clicking the first time seems to fire flex-grow as the propertyName
+       * I assume clicking the same panel again fires flex-shrink so we're going
+       * to listen for it to be the event we don't want.
+       */
       if ( e.propertyName !== 'font-size' ) {
         this.classList.toggle('open-active');
       }
