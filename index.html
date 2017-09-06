@@ -149,6 +149,15 @@
       /* clicking the first time seems to fire flex-grow as the propertyName
        * I assume clicking the same panel again fires flex-shrink so we're going
        * to listen for it to be the event we don't want.
+       *
+       * Wes mentions now in the video about Safari calling the propName flex
+       * instead of flex-grow and he uses e.propertyName.includes() which is
+       * nice. I think my solution is still ok, at least until more events
+       * start to be transitioned and cause us to revisit it.
+       *
+       * Also, in Wes' console it continually seems to call the event (in Chrome)
+       * flex-grow even if you're clicking a second time and the the panel is
+       * shrinking.
        */
       if ( e.propertyName !== 'font-size' ) {
         this.classList.toggle('open-active');
