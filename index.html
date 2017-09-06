@@ -141,11 +141,30 @@
     const panels = document.querySelectorAll('.panel');
 
     function toggleClasses() {
-      ['open','open-active'].forEach((klass) => this.classList.toggle(klass));
+      this.classList.toggle( 'open' );
     }
+
+    // trans(istion) end
+    function transcend(e) {
+      if ( e.propertyName !== 'font-size' ) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    /* Wes now says in the video that he first wants to add .open and then after
+     * the transition (.7 seconds after click roughly) is complete, then add in
+     * the open-active class so that the text from top and bottom only flow in
+     * post flex: 5.
+     */
 
     /* apparently we can get away with arrow function here 🤷 */
     panels.forEach((panel) => panel.addEventListener('click', toggleClasses));
+
+    /* since there's a transition defined for font-size and flex this will fire
+     * twice, we're going to listen to the event in the function and only apply
+     * our open-active class if it's the end of the transition event we want.
+     */
+    panels.forEach((panel) => panel.addEventListener('transitionend', transcend));
   </script>
 
 </body>
